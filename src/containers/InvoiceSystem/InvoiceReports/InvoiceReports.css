@@ -1,0 +1,51 @@
+.RadioButtonList {
+  flex: 5;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0px auto;
+    flex-wrap: wrap;
+  }
+  .statusOptions{
+      border: 0.2px solid #999696 ;
+      margin-top: 5px;
+  }
+  .statusOptions h2 {
+    margin: 10px auto;
+    text-align: center;
+  }
+  .SearchInput {
+    display: flex;
+    width: fit-content;
+    margin: 20px auto !important;
+  }
+  .emptyState {
+    margin-top: 40px;
+    text-align: center;
+  }
+  .emptyState img {
+    height: 100px;
+  }
+
+  .Reset{
+    flex: 1;
+    /* display: flex; */
+    align-content: center;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: -20px;
+  }
+  .RadioContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  @media  (max-width: 670px) {
+    .SearchInput{
+        width: 85%;
+    }    
+  }
+  

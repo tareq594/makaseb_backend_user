@@ -1,0 +1,59 @@
+.Card {
+  background: rgb(255, 255, 255);
+  width: 245.8px;
+  height: 120px;
+  padding: 15px;
+  margin: 10px;
+  border: 1px solid #eaf0f7;
+  border-radius: 8px;
+  box-shadow: 1px 2px 5px 1px rgba(156, 155, 155, 0.5);
+  font-family: Helvetica;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 16px;
+  font-family: HelveticaNeue-Bold;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.Row p {
+  color: #485468;
+}
+.Row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Column {
+  display: flex;
+  flex-direction: column;
+  margin-top: -8px;
+}
+.BelowRow {
+  display: flex;
+}
+.BelowRow p {
+  margin-top: 7px;
+}
+.Value {
+  /* font-size: 35px; */
+}
+.Item {
+  margin-top: 15px;
+}
+.Icon {
+  font-size: 65px !important;
+  margin-top: -15px;
+}
+.Spinner {
+    transform: translate(40%, -165%);
+    -webkit-transform: translate(40%, -165%);
+    -moz-transform: translate(40%, -165%);
+    -ms-transform: translate(40%, -165%);
+    -o-transform: translate(40%, -165%);
+}
+.IMG{
+  width: 70px;
+}
+

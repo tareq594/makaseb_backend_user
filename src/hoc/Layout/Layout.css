@@ -1,0 +1,15 @@
+.Layout {
+  position: relative;
+  min-height: 100vh;
+}
+.Content {
+  margin-left: 240px;
+  padding-bottom: 250px; /* Footer height */
+  padding-top: 70px; /* Footer height */
+}
+
+@media (max-width: 600px) {
+  .Content {
+    margin-left: 0px;
+  }
+}

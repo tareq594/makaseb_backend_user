@@ -1,0 +1,43 @@
+.Validator {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+}
+.Validator h2 {
+  margin-bottom: 20px;
+}
+
+.RadioButtonList {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 30px auto;
+  flex-wrap: wrap
+}
+.SearchInput {
+  display: flex;
+  width: fit-content;
+  margin: 30px auto !important;
+}
+
+.Button {
+  margin-bottom: 10px;
+}
+
+.DatePickers{
+  display: flex;
+  width: 80%;
+  margin: auto;
+  align-content: center;
+  align-items: center;
+  justify-content: center
+}
+.QR img{
+  height: 150px;
+  width: auto;
+}
+
+@media  (max-width: 670px) {
+  .SearchInput{
+      width: 85%;
+  }    
+}

@@ -1,0 +1,18 @@
+.Stock{
+    width: 85%;
+    margin: auto;
+    margin-top: 15%;
+    display: flex;
+    justify-content: space-around;
+}
+.H1{
+    color: #485468 !important;
+    }
+    
+
+@media  (min-width: 750px) {
+    .Stock{
+        width: 95%;
+    }    
+  }
+  

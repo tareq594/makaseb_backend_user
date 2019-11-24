@@ -1,0 +1,40 @@
+.ListItem {
+  color: white;
+}
+
+.ListItemIcon {
+  color: white;
+}
+
+.ListItem a:active,
+.ListItem a.active {
+  background-color: rgb(1, 172, 193);
+  color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.H1 {
+  color: white !important;
+}
+.Avatar {
+  width: fit-content;
+  margin: auto ;
+  margin-top: 20px
+}
+.Avatar img {
+      /* vertical-align: middle; */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.header{
+  color: rgb(11, 220, 247);
+  font-weight: bold;
+  font-size: 16px;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}

@@ -1,0 +1,50 @@
+.Drawer {
+    width: 92%;
+    margin: auto;
+
+}
+.Drawer hr {
+  display: block;
+  /* overflow: hidden;
+  border-style: inset; */
+  border-width: 0.4px;
+  border-color: rgba(255, 255, 255, 0.288);
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.AppBar {
+  color: rgb(255, 255, 255);
+  background-color: rgb(1, 172, 193);
+  position: fixed;
+  top: 0;
+  height: 70px;
+  width: 100%;
+  z-index:3 ;
+}
+.Content {
+  margin-left: 240px;
+}
+
+
+.Toolbar {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: aliceblue;
+  display: flex;
+  flex-direction: row;
+}
+.Toolbar img {
+  height: 80px;
+  width: auto;
+  margin: auto;
+}
+
+
+@media (max-width: 600px){
+    .Content{
+        margin-left: 0px
+    }
+}

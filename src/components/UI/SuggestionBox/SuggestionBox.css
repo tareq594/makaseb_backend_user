@@ -1,0 +1,86 @@
+.SuggestionsBox {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+}
+.SuggestionsBoxTextField {
+  width: 100%;
+}
+
+.Box {
+  display: none;
+  position: absolute;
+  margin-top: 68px;
+  z-index: 5;
+  width: 26%;
+  /* height: 200px; */
+  background-color: rgb(255, 255, 255);
+  border-radius: 6px;
+  box-shadow: 2px 3px 7px 3px rgba(156, 155, 155, 0.5);
+  box-sizing: border-box;
+  transition: opacity 0.5s;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.Box ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.Box ul li {
+  display: flex;
+  flex-direction: column;
+  width: calc(100%+40px);
+  height: 40px;
+  margin-left: -40px;
+  list-style-type: none;
+  cursor: pointer;
+  /* text-align: center; */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.Box ul li a {
+  /* line-height: 40px; */
+  width: 100% !important;
+  height: 100% !important;
+  margin: auto;
+}
+
+.Box ul li:hover {
+  background-color: #f0eff1;
+}
+
+.Box.isOpen {
+  display: flex;
+  opacity: 1;
+}
+
+.SubTextField {
+    width: 45%;
+  }
+
+@media (max-width: 1000px) {
+  .Box {
+    width: 24%;
+  }
+}
+
+@media (max-width: 850px) {
+  .Box {
+    width: 22%;
+  }
+}
+@media (max-width: 600px) {
+  .Box {
+    width: 32%;
+  }
+}
