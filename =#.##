@@ -1,7 +1,0 @@
-+ react-dom@16.9.0
-+ react-dates@21.1.0
-+ moment@2.24.0
-+ react@16.9.0
-removed 1 package, updated 5 packages and audited 903343 packages in 18.783s
-found 1 critical severity vulnerability
-  run `npm audit fix` to fix them, or `npm audit` for details
