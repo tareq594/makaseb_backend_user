@@ -28,7 +28,7 @@ export interface DeviceCardProps {
   address: string;
   mobileNumber: string;
   imei: string;
-  lastUpdated: Date;
+  lastUpdated: string;
   batteryLevel: number;
 }
 
@@ -43,7 +43,7 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
   address = "address amman test",
   mobileNumber = "0798487414",
   imei = "1234556789",
-  lastUpdated = new Date(),
+  lastUpdated = new Date().toLocaleDateString,
   batteryLevel = 100,
 }) => {
   const useStyles = makeStyles({
@@ -58,8 +58,8 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
       /*       height: height,
        */ backgroundColor: "white",
       borderRadius: borderRadius,
-      position: "absolute",
-      marginTop: avatarRadius / 2,
+      /*       position: "absolute",
+       */ marginTop: avatarRadius / 2,
     },
     content: {
       display: "flex",
@@ -160,7 +160,8 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
       </IconedText>
       <IconedText
         iconColor="green"
-        text={
+        text={lastUpdated.toString()}
+        /* {
           lastUpdated.getDay().toString() +
           "/" +
           lastUpdated.getMonth().toString() +
@@ -170,7 +171,7 @@ export const DeviceCard: React.FC<DeviceCardProps> = ({
           lastUpdated.getHours().toString() +
           ":" +
           lastUpdated.getMinutes().toString()
-        }
+        } */
       >
         <ScheduleIcon />
       </IconedText>

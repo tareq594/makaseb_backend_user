@@ -1,0 +1,72 @@
+import { atom, selector } from "recoil";
+import { DevicesRepository } from "../../domain/devices/devices_respo";
+import { Device, DeviceSort } from "../../models/device";
+import { Sort } from "../../models/sort";
+
+export const deviceSortByState = atom({
+  key: "deviceSortByState",
+  default: DeviceSort.BatteryLevel,
+
+  /*   effects_UNSTABLE: [localStorageEffect("authstate")],
+   */
+});
+
+export const deviceSortHowState = atom({
+  key: "deviceSortHowState",
+  default: Sort.asscending,
+
+  /*   effects_UNSTABLE: [localStorageEffect("authstate")],
+   */
+});
+
+export const DevicesPageState = atom({
+  key: "DevicesPageState",
+  default: 1,
+  /*   effects_UNSTABLE: [localStorageEffect("authstate")],
+   */
+});
+
+export const DevicesSearchState = atom({
+  key: "DevicesSearchState",
+  default: "",
+  /*   effects_UNSTABLE: [localStorageEffect("authstate")],
+   */
+});
+
+const filteredTodoListState = selector({
+  key: "filteredTodoListState",
+  get: async ({ get }) => {
+    const deviceSortBy = get(deviceSortByState);
+    const deviceSortHow = get(deviceSortHowState);
+    const page = get(DevicesPageState);
+    const search = get(DevicesSearchState);
+
+    var repository = new DevicesRepository();
+    const params = {
+      page: page,
+      skip: page - 1,
+      deviceSort: deviceSortBy,
+      sort: deviceSortHow,
+    };
+
+    if (search == "") {
+      var devices = await repository.getAllDevices(params);
+      return devices;
+    } else {
+      var devices = await repository.searchDevices({
+        ...params,
+        text: search,
+      });
+      return devices;
+    }
+
+    /* switch (filter) {
+      case "Show Completed":
+        return list.filter((item) => item.isComplete);
+      case "Show Uncompleted":
+        return list.filter((item) => !item.isComplete);
+      default:
+        return list;
+    } */
+  },
+});

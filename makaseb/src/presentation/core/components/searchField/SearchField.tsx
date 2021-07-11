@@ -7,14 +7,23 @@ import {
   Theme,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import { eventNames } from "process";
 import React, { ChangeEvent } from "react";
 
 export interface SearchFieldProps {
-  placeHolder: string;
+  placeHolder?: string;
+  defaultValue?: string;
+  textvalue?:string
+  onChange?: (text: string) => void;
+  onSubmit?: (text: string) => void;
 }
 
 export const SearchField: React.FC<SearchFieldProps> = ({
   placeHolder = "",
+  defaultValue = "",
+  textvalue,
+  onChange = () => {},
+  onSubmit = () => {},
   ...props
 }) => {
   const [value, setValue] = React.useState(defaultValue ?? "");
@@ -43,10 +52,8 @@ export const SearchField: React.FC<SearchFieldProps> = ({
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     event.preventDefault();
-    console.log(event.target.value);
-    if (event.currentTarget.onkeyup) {
-      console.log("enter");
-    }
+    onChange(event.target.value);
+    setValue(event.target.value);
   };
 
   return (
@@ -63,13 +70,14 @@ export const SearchField: React.FC<SearchFieldProps> = ({
           placeholder={placeHolder}
           inputProps={{ "aria-label": "search google maps" }}
           onChange={handleChange}
+          value={textvalue}
         />
         <IconButton
           type="submit"
           className={classes.iconButton}
           aria-label="search"
           onClick={() => {
-            console.log("prevent");
+            onSubmit(value);
           }}
         >
           <SearchIcon />

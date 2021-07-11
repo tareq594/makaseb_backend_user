@@ -1,4 +1,4 @@
-import { createStyles, makeStyles, Theme } from "@material-ui/core";
+import { colors, createStyles, makeStyles, Theme } from "@material-ui/core";
 import React from "react";
 import logo from "../../../assets/images/logo.png";
 
@@ -17,7 +17,7 @@ export const Logo: React.FC<LogoProps> = ({
   size = "medium",
   backgroundColor,
 }) => {
-  const width = size == "small" ? 100 : size == "medium" ? 150 : 400;
+  const width = size == "small" ? 100 : size == "medium" ? 150 : 300;
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -26,6 +26,8 @@ export const Logo: React.FC<LogoProps> = ({
       img: {
         width: width,
         backgroundColor: backgroundColor ?? "transparent",
+        color:colors.blue[100],
+        borderRadius:8.0
       },
     })
   );

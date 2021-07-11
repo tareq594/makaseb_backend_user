@@ -1,30 +1,53 @@
 import React from "react";
-import logo from "./assets/images/logo.png";
 import "./App.css";
-import appStyles from "./App.module.css";
 import "@fontsource/roboto";
 import { Layout } from "./presentation/core/layOut/Layout";
-import { Logo } from "./presentation/core/logo/Logo";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { categoriesRoutes, Rout } from "./routes";
+import { SignIn } from "./presentation/login/login";
+import { ProtectedRoute } from "./core/util/protectedRoute/protectedRoute";
+import { useEffect } from "react";
+import { autoSignIn } from "./application/authentication/authentication_slice";
+
+import { useDispatch } from "react-redux";
+
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(autoSignIn());
+    /* autoAuth(); */
+  });
+
+  var pages: Rout[] = [];
+  categoriesRoutes.forEach((cat) => {
+    cat.routes.forEach((rout) => {
+      pages.push(rout);
+    });
+  });
+
+  const routes = pages.map((page) => {
+    return (
+      <ProtectedRoute path={page.path} exact key={page.name}>
+        <page.component />
+      </ProtectedRoute>
+    );
+  });
+
   return (
-    <div className="App">
-      <Layout>
-        <header className={appStyles["App-header"]}>
-          <Logo></Logo>
-          {/*           <img src={logo} className="App-logo" alt="logo" />
-           */}{" "}
-          <p>Edit src/App.tsx and savne to reload.</p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </Layout>
-    </div>
+      <div className="App">
+        <Router>
+          <Layout>
+            <Switch>
+              {routes}
+              <Route path="/login" exact>
+                <SignIn />
+              </Route>
+            </Switch>
+          </Layout>
+        </Router>
+      </div>
   );
 }
 

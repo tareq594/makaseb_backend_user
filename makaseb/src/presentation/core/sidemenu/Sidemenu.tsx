@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core/styles";
 
 import {
+  colors,
   Divider,
   Hidden,
   List,
@@ -15,10 +16,17 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import MailIcon from "@material-ui/icons/Mail";
-import InboxIcon from "@material-ui/icons/Inbox";
+
+import { Link } from "react-router-dom";
 import { Logo } from "../logo/Logo";
-import { config } from "../../../config";
+import { categoriesRoutes } from "../../../routes";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  AuthenticationState,
+  selectAuthenticate,
+  signOut,
+} from "../../../application/authentication/authentication_slice";
+
 export interface SidemenuProps {
   width: number;
   backgroundColor: string;
@@ -36,6 +44,9 @@ export const Sidemenu: React.FC<SidemenuProps> = ({
   mobileOpen = false,
   handleDrawerToggle,
 }) => {
+  const authentication = useSelector(selectAuthenticate);
+  const dispatch = useDispatch();
+
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       drawer: {
@@ -59,6 +70,10 @@ export const Sidemenu: React.FC<SidemenuProps> = ({
       ListItem: {
         color: menuItemColor,
       },
+      category: {
+        color: colors.grey.A400,
+        fontWeight: "bolder",
+      },
     })
   );
 
@@ -73,31 +88,41 @@ export const Sidemenu: React.FC<SidemenuProps> = ({
 
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text} className={classes.ListItem}>
-            <ListItemIcon className={classes.ListItem}>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        {categoriesRoutes.map((catRout, index) => {
+          var routes = catRout.routes.map((rout, index) => {
+            var icon = rout.icon ? <rout.icon></rout.icon> : <div></div>;
+            return (
+              <Link to={rout.path} key={rout.name + "link"}>
+                <ListItem button className={classes.ListItem}>
+                  <ListItemIcon className={classes.ListItem}>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText primary={rout.name} />
+                </ListItem>
+              </Link>
+            );
+          });
+          var cat = (
+            <div key={catRout.name + "div"}>
+              <ListItem className={classes.ListItem}>
+                <ListItemText
+                  primary={catRout.name}
+                  className={classes.category}
+                />
+              </ListItem>
+              {routes}
+            </div>
+          );
+          return cat;
+        })}
       </List>
       <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text} className={classes.ListItem}>
-            <ListItemIcon className={classes.ListItem}>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <button onClick={() => dispatch(signOut())}>press</button>
     </div>
   );
 
-  return (
-    <div>
+  const content =
+    authentication == AuthenticationState.Authenticated ? (
       <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
           <Drawer
@@ -127,6 +152,9 @@ export const Sidemenu: React.FC<SidemenuProps> = ({
           </Drawer>
         </Hidden>
       </nav>
-    </div>
-  );
+    ) : (
+      <div></div>
+    );
+
+  return <div>{content}</div>;
 };

@@ -2,6 +2,11 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, IconButton, Toolbar, Typography } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { useSelector } from "react-redux";
+import {
+  AuthenticationState,
+  selectAuthenticate,
+} from "../../../application/authentication/authentication_slice";
 
 export interface MyAppBarProps {
   backgroundColor: string;
@@ -14,8 +19,7 @@ export const MyAppBar: React.FC<MyAppBarProps> = ({
   width,
   handleDrawerToggle,
 }) => {
-
-  console.log(backgroundColor)
+  const authentication = useSelector(selectAuthenticate);
 
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,8 +42,8 @@ export const MyAppBar: React.FC<MyAppBarProps> = ({
 
   const classes = useStyles();
 
-  return (
-    <div>
+  const content =
+  authentication == AuthenticationState.Authenticated ? (
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -56,6 +60,9 @@ export const MyAppBar: React.FC<MyAppBarProps> = ({
           </Typography>
         </Toolbar>
       </AppBar>
-    </div>
-  );
+    ) : (
+      <div></div>
+    );
+
+  return <div>{content}</div>;
 };

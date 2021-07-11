@@ -1,4 +1,5 @@
 import {
+  colors,
   createStyles,
   FormControl,
   InputLabel,
@@ -13,29 +14,29 @@ import { config } from "../../../../config";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 export interface DropDownProps {
-  label: string;
-  labelColor: string;
-  selectedColor: string;
-  textColor: string;
-  hoverColor: string;
-  minWidth: number;
+  label?: string;
+  labelColor?: string;
+  selectedColor?: string;
+  textColor?: string;
+  hoverColor?: string;
+  minWidth?: number;
   id: string;
   defaultValue: any;
   options: any[];
-  onChange: (value) => void;
+  onChange?: (value) => void;
 }
 
 export const DropDown: React.FC<DropDownProps> = ({
   label = "",
   id = "",
-  minWidth = 120,
-  labelColor,
-  textColor,
-  selectedColor,
-  hoverColor,
+  minWidth = 170,
+  labelColor = config.primaryColor,
+  textColor = colors.grey[600],
+  selectedColor = config.primaryColor,
+  hoverColor = colors.blue[100],
   defaultValue,
   options,
-  onChange,
+  onChange = () => {},
   ...props
 }) => {
   const [value, setValue] = React.useState(defaultValue ?? "");
@@ -47,8 +48,11 @@ export const DropDown: React.FC<DropDownProps> = ({
   const useStyles = makeStyles((theme: Theme) =>
     createStyles({
       formControl: {
-        margin: theme.spacing(1),
+        margin: 0,
         minWidth: minWidth,
+        "label + &": {
+          marginTop: "0",
+        },
       },
       selectEmpty: {
         marginTop: theme.spacing(2),
@@ -57,13 +61,13 @@ export const DropDown: React.FC<DropDownProps> = ({
         minWidth: minWidth,
         background: "white",
         color: textColor ?? config.primaryColor,
-        fontWeight: 200,
+        fontWeight: "bold",
         borderStyle: "none",
         borderWidth: 2,
         borderRadius: 12,
         paddingLeft: 24,
-        paddingTop: 14,
-        paddingBottom: 15,
+        paddingTop: 10,
+        paddingBottom: 10,
         boxShadow: "0px 5px 8px -3px rgba(0,0,0,0.14)",
       },
       label: {
@@ -75,7 +79,7 @@ export const DropDown: React.FC<DropDownProps> = ({
       },
       paper: {
         borderRadius: 12,
-        marginTop: 8,
+        marginTop: 0,
       },
       list: {
         paddingTop: 0,
@@ -130,7 +134,7 @@ export const DropDown: React.FC<DropDownProps> = ({
   const menuItems = options ? (
     options.map((option) => {
       return (
-        <MenuItem value={option} id={option.toString()}>
+        <MenuItem value={option} id={option.toString()} key={option}>
           {option.toString()}
         </MenuItem>
       );
@@ -140,7 +144,7 @@ export const DropDown: React.FC<DropDownProps> = ({
   );
 
   return (
-    <FormControl className={classes.formControl}>
+    <FormControl className={classes.formControl} margin="none">
       <InputLabel id={id + "label"} className={classes.label}>
         {label}
       </InputLabel>

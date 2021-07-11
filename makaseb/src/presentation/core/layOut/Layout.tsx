@@ -32,6 +32,12 @@ export const Layout: React.FC<LayoutProps> = ({
       root: {
         display: "flex",
       },
+      content: {
+        margin: "auto",
+        marginTop: theme.spacing(8),
+        width: "100%"
+
+      }
     })
   );
   const classes = useStyles();
@@ -41,11 +47,11 @@ export const Layout: React.FC<LayoutProps> = ({
       <div className={classes.root} {...props}>
         <CssBaseline />
         <MyAppBar
-          backgroundColor={primaryColor}
+          backgroundColor={config.appBarColor}
           width={drawerWidth}
           handleDrawerToggle={handleDrawerToggle}
-        ></MyAppBar>
-
+        >
+        </MyAppBar>
         <Sidemenu
           width={drawerWidth}
           backgroundColor={primaryColor}
@@ -53,8 +59,12 @@ export const Layout: React.FC<LayoutProps> = ({
           mobileOpen={mobileOpen}
           handleDrawerToggle={handleDrawerToggle}
         ></Sidemenu>
+        <div className={classes.content}>
+          {props.children}
+        </div>
+
       </div>
-      {props.children}
+
     </div>
   );
 };
