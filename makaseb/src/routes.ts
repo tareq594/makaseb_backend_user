@@ -1,10 +1,17 @@
 import { SvgIconTypeMap } from "@material-ui/core";
 import { OverridableComponent } from "@material-ui/core/OverridableComponent";
-import { Add, DashboardRounded, PersonAdd } from "@material-ui/icons";
+import {
+  Add,
+  DashboardRounded,
+  EditOutlined,
+  Person,
+  PersonAdd,
+} from "@material-ui/icons";
 import React from "react";
 import { Dashboard } from "./presentation/dashboard/dashboard";
 import CreateDevice from "./presentation/device/createDevice/createDevice";
 import CreateUser from "./presentation/user/createUser/createUser";
+import { ManageUsers } from "./presentation/user/manageUsers/manageUsers";
 
 export interface Rout {
   isProducted?: boolean;
@@ -45,6 +52,12 @@ export const categoriesRoutes: CategoryRout[] = [
   {
     name: "Users management",
     routes: [
+      {
+        path: "/user",
+        name: "Manage Users",
+        icon: Person,
+        component: ManageUsers,
+      },
       {
         path: "/user/new",
         name: "Create User",
